@@ -1,5 +1,5 @@
 package com.andersonmendes.assistidossociais.domain.service;
 
-public class DependentesService {
+public class CadastroTipoDeAssistenciaService {
 
 }
