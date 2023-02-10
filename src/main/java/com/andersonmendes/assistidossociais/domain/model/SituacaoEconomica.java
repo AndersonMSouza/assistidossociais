@@ -1,14 +1,25 @@
 package com.andersonmendes.assistidossociais.domain.model;
 
-import java.math.BigDecimal;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@Data
+@Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class SituacaoEconomica {
 
+	@Id
+	@EqualsAndHashCode.Include
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String situacaoEconomica;
 	private String casa;
-	private BigDecimal rendaFamiliar;
-	private String explicacao;
+	private String rendaFamiliar;
+	private String explicacaoRenda;
 	private String escolaridade;
 	
 }
