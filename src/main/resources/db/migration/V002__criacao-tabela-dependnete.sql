@@ -1,4 +1,4 @@
-CREATE TABLE dependente(
+CREATE TABLE IF NOT EXISTS dependente(
 	id BIGINT AUTO_INCREMENT NOT NULL,
     nome_completo VARCHAR(255),
     data_nascimento VARCHAR(15),

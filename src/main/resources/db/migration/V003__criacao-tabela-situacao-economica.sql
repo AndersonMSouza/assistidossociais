@@ -1,4 +1,4 @@
-CREATE TABLE situacao_economica(
+CREATE TABLE IF NOT EXISTS situacao_economica(
 	id BIGINT AUTO_INCREMENT NOT NULL,
     situacao_economica VARCHAR(255) NOT NULL,
     casa VARCHAR(25) NOT NULL,
