@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,5 +23,9 @@ public class SituacaoEconomica {
 	private String rendaFamiliar;
 	private String explicacaoRenda;
 	private String escolaridade;
+	
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Pessoa pessoa;
 	
 }

@@ -5,5 +5,7 @@ CREATE TABLE IF NOT EXISTS parecer(
     relato_primeira_visita VARCHAR(255) NOT NULL,
     ultima_visita DATE NOT NULL,
     relato_ultima_visita VARCHAR(255) NOT NULL,
+    pessoa_id BIGINT NOT NULL,
+    FOREIGN KEY(pessoa_id) REFERENCES pessoa(id),
 	PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

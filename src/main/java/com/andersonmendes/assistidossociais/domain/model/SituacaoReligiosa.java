@@ -6,6 +6,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,4 +31,8 @@ public class SituacaoReligiosa {
 	private FilhosBatizados filhosBatizados;
 	
 	private String religiao;
+	
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Pessoa pessoa;
 }

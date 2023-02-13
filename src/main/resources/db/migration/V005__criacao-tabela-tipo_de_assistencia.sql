@@ -15,5 +15,7 @@ CREATE TABLE IF NOT EXISTS tipo_de_assitencia(
     promocao DATE,
     recusa DATE,
     sindicancia_realizada_por VARCHAR(255),
+    pessoa_id BIGINT NOT NULL,
+    FOREIGN KEY(pessoa_id) REFERENCES pessoa(id),
     PRIMARY KEY(ID)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

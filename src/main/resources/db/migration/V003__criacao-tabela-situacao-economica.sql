@@ -5,5 +5,7 @@ CREATE TABLE IF NOT EXISTS situacao_economica(
     renda_familiar DECIMAL(10,2) NOT NULL,
     explicacao_renda VARCHAR(225),
     escolaridade VARCHAR(50) NOT NULL,
+    pessoa_id BIGINT NOT NULL,
+    FOREIGN KEY(pessoa_id) REFERENCES pessoa(id),
     PRIMARY KEY(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

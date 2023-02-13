@@ -35,6 +35,16 @@ public class PessoaController {
 	@GetMapping
 	public List<Pessoa> listar() {
 		return pessoaRepository.findAll();
+	}	
+	
+	@GetMapping("/pessoa-por-nome")
+	public List<Pessoa> porNome(String nomeCompleto) {
+		return pessoaRepository.findByNomeCompletoContaining(nomeCompleto);
+	}
+	
+	@GetMapping("/pessoa-por-cpf")
+	public Optional<Pessoa> porCpf(String cpf) {
+		return pessoaRepository.findByCpf(cpf);
 	}
 	
 	@GetMapping("/{pessoaId}")
