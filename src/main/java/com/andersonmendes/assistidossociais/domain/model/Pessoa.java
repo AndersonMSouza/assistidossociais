@@ -1,6 +1,6 @@
 package com.andersonmendes.assistidossociais.domain.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -8,8 +8,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Embeddable
 public class Pessoa {
 
 	@Id
