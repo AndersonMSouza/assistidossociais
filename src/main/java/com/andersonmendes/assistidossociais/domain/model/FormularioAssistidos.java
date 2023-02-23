@@ -15,5 +15,8 @@ public class FormularioAssistidos {
 	
 	@Embedded
 	private Dependente dependente;
+	
+	@Embedded
+	private SituacaoEconomica situacaoEconomica;
 
 }
