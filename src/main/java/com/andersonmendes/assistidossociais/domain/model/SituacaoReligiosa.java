@@ -1,5 +1,9 @@
 package com.andersonmendes.assistidossociais.domain.model;
 
+import com.andersonmendes.assistidossociais.domain.enums.FilhosBatizados;
+import com.andersonmendes.assistidossociais.domain.enums.StatusCivil;
+import com.andersonmendes.assistidossociais.domain.enums.StatusMatrimonial;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

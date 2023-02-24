@@ -1,4 +1,4 @@
-package com.andersonmendes.assistidossociais.domain.model;
+package com.andersonmendes.assistidossociais.domain.enums;
 
 public enum NecessitaAssistenciaJuridica {
 

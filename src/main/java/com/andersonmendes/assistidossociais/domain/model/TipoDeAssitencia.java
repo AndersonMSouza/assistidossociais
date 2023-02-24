@@ -4,6 +4,16 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.andersonmendes.assistidossociais.domain.enums.AviamentoReceitasMedicamentos;
+import com.andersonmendes.assistidossociais.domain.enums.EncaminhamentoAposentadoria;
+import com.andersonmendes.assistidossociais.domain.enums.EncaminhamentoSebem;
+import com.andersonmendes.assistidossociais.domain.enums.FornecerAlimentos;
+import com.andersonmendes.assistidossociais.domain.enums.NecessitaAssistenciaJuridica;
+import com.andersonmendes.assistidossociais.domain.enums.NecessitaConsultaMedica;
+import com.andersonmendes.assistidossociais.domain.enums.NecessitaRoupas;
+import com.andersonmendes.assistidossociais.domain.enums.Outros;
+import com.andersonmendes.assistidossociais.domain.enums.VerificarEmprego;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
