@@ -4,6 +4,7 @@ import com.andersonmendes.assistidossociais.domain.enums.FilhosBatizados;
 import com.andersonmendes.assistidossociais.domain.enums.StatusCivil;
 import com.andersonmendes.assistidossociais.domain.enums.StatusMatrimonial;
 
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -14,16 +15,21 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+//@Data
+//@Entity
+//@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
+@Embeddable
 public class SituacaoReligiosa {
 
-	@Id
-	@EqualsAndHashCode.Include
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+//	@Id
+//	@EqualsAndHashCode.Include
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Long id;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusMatrimonial statusMatrimonial;
@@ -36,7 +42,7 @@ public class SituacaoReligiosa {
 	
 	private String religiao;
 	
-	@ManyToOne
-	@JoinColumn(nullable = false)
-	private Pessoa pessoa;
+//	@ManyToOne
+//	@JoinColumn(nullable = false)
+//	private Pessoa pessoa;
 }

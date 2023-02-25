@@ -18,5 +18,8 @@ public class FormularioAssistidos {
 	
 	@Embedded
 	private SituacaoEconomica situacaoEconomica;
+	
+	@Embedded
+	private SituacaoReligiosa situacaoReligiosa;
 
 }
