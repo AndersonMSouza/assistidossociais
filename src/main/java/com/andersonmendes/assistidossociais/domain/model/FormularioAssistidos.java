@@ -21,5 +21,8 @@ public class FormularioAssistidos {
 	
 	@Embedded
 	private SituacaoReligiosa situacaoReligiosa;
+	
+	@Embedded
+	private TipoDeAssitencia tipoDeAssitencia;
 
 }

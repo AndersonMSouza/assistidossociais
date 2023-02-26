@@ -14,26 +14,24 @@ import com.andersonmendes.assistidossociais.domain.enums.NecessitaRoupas;
 import com.andersonmendes.assistidossociais.domain.enums.Outros;
 import com.andersonmendes.assistidossociais.domain.enums.VerificarEmprego;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+//@Data
+//@Entity
+//@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
+@Embeddable
 public class TipoDeAssitencia {
 
-	@Id
-	@EqualsAndHashCode.Include
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+//	@Id
+//	@EqualsAndHashCode.Include
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Long id;
 	
 	@Enumerated(EnumType.STRING)
 	private FornecerAlimentos fornecerAlimentos;
@@ -78,7 +76,7 @@ public class TipoDeAssitencia {
 	
 	private String sindicanciaRealizadaPor; 
 	
-	@ManyToOne
-	@JoinColumn(nullable = false)
-	private Pessoa pessoa;
+//	@ManyToOne
+//	@JoinColumn(nullable = false)
+//	private Pessoa pessoa;
 }
