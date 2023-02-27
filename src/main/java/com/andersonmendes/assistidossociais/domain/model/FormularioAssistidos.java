@@ -24,5 +24,8 @@ public class FormularioAssistidos {
 	
 	@Embedded
 	private TipoDeAssitencia tipoDeAssitencia;
+	
+	@Embedded
+	private Parecer parecer;
 
 }
