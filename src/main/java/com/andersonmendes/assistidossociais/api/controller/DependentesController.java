@@ -38,14 +38,8 @@ public class DependentesController {
 	}
 	
 	@GetMapping("/{dependenteId}")
-	public ResponseEntity<Dependente> buscar(@PathVariable Long dependenteId) {
-		Optional<Dependente> dependente = dependenteRepository.findById(dependenteId);
-		
-		if (dependente.isPresent()) {
-			return ResponseEntity.ok(dependente.get());
-		}
-		
-		return ResponseEntity.notFound().build();		
+	public Dependente buscar(@PathVariable Long dependenteId) {
+		return cadastroDependenteService.buscarOuFalhar(dependenteId);
 	}
 	
 	@PostMapping
