@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeEmUsoException;
@@ -43,14 +44,9 @@ public class DependentesController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> adicionar(@RequestBody Dependente dependente) {
-		try {
-			dependente = cadastroDependenteService.salvar(dependente);
-			return ResponseEntity.status(HttpStatus.CREATED).body(dependente);
-			
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+	@ResponseStatus(HttpStatus.CREATED)
+	public Dependente adicionar(@RequestBody Dependente dependente) {
+		return cadastroDependenteService.salvar(dependente);
 	}
 	
 	@PutMapping("{dependenteId}")
