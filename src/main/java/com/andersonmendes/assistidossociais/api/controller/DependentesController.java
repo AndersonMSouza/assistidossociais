@@ -1,7 +1,6 @@
 package com.andersonmendes.assistidossociais.api.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,21 +49,13 @@ public class DependentesController {
 	}
 	
 	@PutMapping("{dependenteId}")
-	public ResponseEntity<?> atualizar(@PathVariable Long dependenteId, @RequestBody Dependente dependente) {
-		try {
-		Optional<Dependente> dependenteAtual = dependenteRepository.findById(dependenteId);
+	public Dependente atualizar(@PathVariable Long dependenteId, @RequestBody Dependente dependente) {
 		
-		if (dependenteAtual.isPresent()) {
-			BeanUtils.copyProperties(dependente, dependenteAtual.get(), "id");
-			Dependente dependenteSalvo = cadastroDependenteService.salvar(dependenteAtual.get());
-			return ResponseEntity.ok(dependenteSalvo);
-		}
+		Dependente dependenteAtual = dependenteRepository.findById(dependenteId).orElse(null);
 		
-		return ResponseEntity.notFound().build();
-		
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}			
+		BeanUtils.copyProperties(dependente, dependenteAtual, "id");
+			
+		return cadastroDependenteService.salvar(dependenteAtual);
 	}
 	
 	@DeleteMapping("/{dependenteId}")
