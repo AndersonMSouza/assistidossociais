@@ -56,21 +56,13 @@ public class ParecerController {
 	}
 
 	@PutMapping("/{parecerId}")
-	public ResponseEntity<?> atualizar(@PathVariable Long parecerId, @RequestBody Parecer parecer) {
-		try {
-			Optional<Parecer> parecerAtual = parecerRepository.findById(parecerId);
+	public Parecer atualizar(@PathVariable Long parecerId, @RequestBody Parecer parecer) {
 		
-			if (parecerAtual.isPresent()) {
-				BeanUtils.copyProperties(parecer, parecerAtual.get(), "id");
-				Parecer parecerSalvo = cadastroParecerService.salvar(parecerAtual.get());
-				return ResponseEntity.ok(parecerSalvo);
-			}
-			
-			return ResponseEntity.notFound().build();
-			
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		Parecer parecerAtual = parecerRepository.findById(parecerId).orElse(null);
+		
+		BeanUtils.copyProperties(parecer, parecerAtual, "id");
+		
+		return cadastroParecerService.salvar(parecerAtual);
 	}
 	
 	@DeleteMapping("/{parecerId}")
