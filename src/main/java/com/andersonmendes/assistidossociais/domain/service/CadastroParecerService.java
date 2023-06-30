@@ -15,7 +15,7 @@ public class CadastroParecerService {
 
 	@Autowired
 	private ParecerRepository parecerRepository;
-	
+		
 	public Parecer salvar(Parecer parecer) {
 		return parecerRepository.save(parecer);
 	}
@@ -33,14 +33,5 @@ public class CadastroParecerService {
 				String.format("Pessoa de código %d não pode ser removida pois está em uso!", parecerId));
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 }
