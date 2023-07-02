@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeEmUsoException;
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import com.andersonmendes.assistidossociais.domain.model.SituacaoEconomica;
 import com.andersonmendes.assistidossociais.domain.repository.SituacaoEconomicaRepository;
@@ -78,16 +78,8 @@ public class SituacaoEconomicaController {
 	}
 	
 	@DeleteMapping("/{situacaoEconomicaId}")
-	public ResponseEntity<?> remover(@PathVariable Long situacaoEconomicaId) {
-		try {
-			cadastroSituacaEconomicaService.excluir(situacaoEconomicaId);
-			return ResponseEntity.noContent().build();
-			
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.notFound().build();
-			
-		} catch (EntidadeEmUsoException e) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-		}
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void remover(@PathVariable Long situacaoEconomicaId) {
+		cadastroSituacaEconomicaService.excluir(situacaoEconomicaId);
 	}
 }
