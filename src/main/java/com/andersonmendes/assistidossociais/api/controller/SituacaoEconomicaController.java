@@ -60,21 +60,13 @@ public class SituacaoEconomicaController {
 	}
 
 	@PutMapping("/{situacaoEconomicaId}")
-	public ResponseEntity<?> atualizar(@PathVariable Long situacaoEconomicaId, @RequestBody SituacaoEconomica situacaoEconomica) {
-		try {
-			Optional<SituacaoEconomica> situacaoEconomicaAtual = situacaoEconomicaRepository.findById(situacaoEconomicaId);
+	public SituacaoEconomica atualizar(@PathVariable Long situacaoEconomicaId, @RequestBody SituacaoEconomica situacaoEconomica) {
 		
-			if (situacaoEconomicaAtual.isPresent()) {
-				BeanUtils.copyProperties(situacaoEconomica, situacaoEconomicaAtual.get(), "id");
-				SituacaoEconomica situacaoEconomicaSalva = cadastroSituacaEconomicaService.salvar(situacaoEconomicaAtual.get());
-				return ResponseEntity.ok(situacaoEconomicaSalva);
-			}
-			
-			return ResponseEntity.notFound().build();
-			
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+		SituacaoEconomica situacaoEconomicaAtual = situacaoEconomicaRepository.findById(situacaoEconomicaId).orElse(null);
+		
+		BeanUtils.copyProperties(situacaoEconomica, situacaoEconomicaAtual, "id");
+		
+		return cadastroSituacaEconomicaService.salvar(situacaoEconomica);
 	}
 	
 	@DeleteMapping("/{situacaoEconomicaId}")
