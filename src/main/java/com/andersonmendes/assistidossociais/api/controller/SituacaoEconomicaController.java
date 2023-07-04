@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import com.andersonmendes.assistidossociais.domain.model.SituacaoEconomica;
 import com.andersonmendes.assistidossociais.domain.repository.SituacaoEconomicaRepository;
 import com.andersonmendes.assistidossociais.domain.service.CadastroSituacaoEconomicaService;
@@ -49,14 +48,9 @@ public class SituacaoEconomicaController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> adicionar(@RequestBody SituacaoEconomica situacaoEconomica) {
-		try {
-			situacaoEconomica = cadastroSituacaEconomicaService.salvar(situacaoEconomica);
-			return ResponseEntity.status(HttpStatus.CREATED).body(situacaoEconomica);
-		
-		} catch (EntidadeNaoEncontradaException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
+	@ResponseStatus(HttpStatus.CREATED)
+	public SituacaoEconomica adicionar(@RequestBody SituacaoEconomica situacaoEconomica) {
+		return cadastroSituacaEconomicaService.salvar(situacaoEconomica);
 	}
 
 	@PutMapping("/{situacaoEconomicaId}")
