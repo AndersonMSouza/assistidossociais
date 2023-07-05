@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeEmUsoException;
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeNaoEncontradaException;
+import com.andersonmendes.assistidossociais.domain.exceptions.SituacaoEconomicaNaoEncontradaException;
 import com.andersonmendes.assistidossociais.domain.model.SituacaoEconomica;
 import com.andersonmendes.assistidossociais.domain.repository.SituacaoEconomicaRepository;
 
@@ -31,5 +33,10 @@ public class CadastroSituacaoEconomicaService {
 			throw new EntidadeEmUsoException(
 				String.format("SituacaoEconomica de código %d não pode ser removida pois está em uso!", situacaoEconomicaId));
 		}
+	}
+	
+	public SituacaoEconomica buscarOuFalhar(@PathVariable Long situacaoEconomicaId) {
+		return situacaoEconomicaRepository.findById(situacaoEconomicaId)
+			.orElseThrow(() -> new SituacaoEconomicaNaoEncontradaException(situacaoEconomicaId));
 	}
 }
