@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeEmUsoException;
-import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import com.andersonmendes.assistidossociais.domain.exceptions.FormularioNaoEncontradoException;
 import com.andersonmendes.assistidossociais.domain.model.FormularioAssistidos;
 import com.andersonmendes.assistidossociais.domain.repository.FormularioAssisitidosRepository;
@@ -30,8 +29,7 @@ public class CadastroFormularioAssistidosService {
 			formularioAssisitidosRepository.deleteById(formularioAssistidosId);
 		
 		} catch (EmptyResultDataAccessException e) {
-			throw new EntidadeNaoEncontradaException(
-				String.format("Não existe formulário cadastrado com o código %d.", formularioAssistidosId));
+			throw new FormularioNaoEncontradoException(formularioAssistidosId);
 		
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeEmUsoException;
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeNaoEncontradaException;
-import com.andersonmendes.assistidossociais.domain.model.TipoDeAssitencia;
+import com.andersonmendes.assistidossociais.domain.model.TipoDeAssistencia;
 import com.andersonmendes.assistidossociais.domain.repository.TipoDeAssistenciaRepository;
 import com.andersonmendes.assistidossociais.domain.service.CadastroTipoDeAssistenciaService;
 
@@ -33,13 +33,13 @@ public class TipoDeAssitenciaController {
 	private CadastroTipoDeAssistenciaService cadastroTipoDeAssistenciaService;
 	
 	@GetMapping
-	public List<TipoDeAssitencia> listar() {
+	public List<TipoDeAssistencia> listar() {
 		return tipoDeAssistenciaRepository.findAll();
 	}
 	
 	@GetMapping("/{tipodeassistenciaId}")
-	public ResponseEntity<TipoDeAssitencia> buscar(@PathVariable Long tipodeassistenciaId) {
-		Optional<TipoDeAssitencia> tipoDeAssitencia = tipoDeAssistenciaRepository.findById(tipodeassistenciaId);
+	public ResponseEntity<TipoDeAssistencia> buscar(@PathVariable Long tipodeassistenciaId) {
+		Optional<TipoDeAssistencia> tipoDeAssitencia = tipoDeAssistenciaRepository.findById(tipodeassistenciaId);
 		
 		if (tipoDeAssitencia.isPresent()) {
 			return ResponseEntity.ok(tipoDeAssitencia.get());
@@ -49,7 +49,7 @@ public class TipoDeAssitenciaController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> adicionar(@RequestBody TipoDeAssitencia tipoDeAssitencia) {
+	public ResponseEntity<?> adicionar(@RequestBody TipoDeAssistencia tipoDeAssitencia) {
 		try {
 			tipoDeAssitencia = cadastroTipoDeAssistenciaService.salvar(tipoDeAssitencia);
 			return ResponseEntity.status(HttpStatus.CREATED).body(tipoDeAssitencia);
@@ -60,13 +60,13 @@ public class TipoDeAssitenciaController {
 	}
 
 	@PutMapping("/{tipoDeAssistenciaId}")
-	public ResponseEntity<?> atualizar(@PathVariable Long tipoDeAssistenciaId, @RequestBody TipoDeAssitencia tipoDeAssitencia) {
+	public ResponseEntity<?> atualizar(@PathVariable Long tipoDeAssistenciaId, @RequestBody TipoDeAssistencia tipoDeAssitencia) {
 		try {
-			Optional<TipoDeAssitencia> tipoDeAssistenciaAtual = tipoDeAssistenciaRepository.findById(tipoDeAssistenciaId);
+			Optional<TipoDeAssistencia> tipoDeAssistenciaAtual = tipoDeAssistenciaRepository.findById(tipoDeAssistenciaId);
 		
 			if (tipoDeAssistenciaAtual.isPresent()) {
 				BeanUtils.copyProperties(tipoDeAssitencia, tipoDeAssistenciaAtual.get(), "id");
-				TipoDeAssitencia tipoDeAssistenciaSalva = cadastroTipoDeAssistenciaService.salvar(tipoDeAssistenciaAtual.get());
+				TipoDeAssistencia tipoDeAssistenciaSalva = cadastroTipoDeAssistenciaService.salvar(tipoDeAssistenciaAtual.get());
 				return ResponseEntity.ok(tipoDeAssistenciaSalva);
 			}
 			

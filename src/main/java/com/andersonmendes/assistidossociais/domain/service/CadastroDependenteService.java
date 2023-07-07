@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.andersonmendes.assistidossociais.domain.exceptions.DependenteNaoEncontradoException;
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeEmUsoException;
-import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import com.andersonmendes.assistidossociais.domain.model.Dependente;
 import com.andersonmendes.assistidossociais.domain.repository.DependenteRepository;
 
@@ -30,8 +29,7 @@ public class CadastroDependenteService {
 			dependenteRepository.deleteById(dependenteId);
 		
 		} catch (EmptyResultDataAccessException e) {
-			throw new EntidadeNaoEncontradaException(
-				String.format("Não existe dependente cadastrado com o código %d.", dependenteId));
+			throw new DependenteNaoEncontradoException(dependenteId);
 		
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(

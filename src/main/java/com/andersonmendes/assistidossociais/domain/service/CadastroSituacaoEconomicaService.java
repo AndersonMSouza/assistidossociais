@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeEmUsoException;
-import com.andersonmendes.assistidossociais.domain.exceptions.EntidadeNaoEncontradaException;
 import com.andersonmendes.assistidossociais.domain.exceptions.SituacaoEconomicaNaoEncontradaException;
 import com.andersonmendes.assistidossociais.domain.model.SituacaoEconomica;
 import com.andersonmendes.assistidossociais.domain.repository.SituacaoEconomicaRepository;
@@ -26,8 +25,7 @@ public class CadastroSituacaoEconomicaService {
 		try {
 			situacaoEconomicaRepository.deleteById(situacaoEconomicaId);
 		} catch (EmptyResultDataAccessException e) {
-			throw new EntidadeNaoEncontradaException(
-					String.format("Não existe situacaoEconomica cadastrada com o codigo %d.", situacaoEconomicaId));
+			throw new SituacaoEconomicaNaoEncontradaException(situacaoEconomicaId);
 		
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(

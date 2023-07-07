@@ -26,7 +26,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Embeddable
-public class TipoDeAssitencia {
+public class TipoDeAssistencia {
 
 //	@Id
 //	@EqualsAndHashCode.Include
